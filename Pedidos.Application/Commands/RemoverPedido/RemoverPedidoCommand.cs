@@ -2,9 +2,9 @@
 
 namespace Pedidos.Application.Commands.RemoverPedido;
 
-public class RemoverPedidoCommand : IRequest<Guid>
+public class RemoverPedidoCommand : IRequest<Unit>
 {
-    public Guid PedidoId { get; set; }
+    public Guid PedidoId { get; }
 
     public RemoverPedidoCommand(Guid pedidoId)
     {
