@@ -36,6 +36,9 @@ API RESTful para gerenciamento de pedidos de uma loja online, construída com fo
 Pedidos.sln
 │
 ├── Pedidos.API # Camada de apresentação (controllers, Program.cs)
+
 ├── Pedidos.Application # Camada de aplicação (comandos, queries, handlers)
+
 ├── Pedidos.Domain # Entidades de domínio, interfaces, enums
+
 ├── Pedidos.Infrastructure # Acesso a dados (SQL Server + MongoDB), repositórios, seeds
