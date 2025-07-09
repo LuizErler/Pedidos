@@ -3,7 +3,7 @@ using Pedidos.Domain.Entities.Customer;
 using Pedidos.Domain.Repositories;
 using Pedidos.Infrastructure.Data;
 
-namespace Pedidos.Infrastructure.Repositories;
+namespace Pedidos.Infrastructure.Data.Repositories;
 
 public class CustomerRepository : ICustomerRepository
 {

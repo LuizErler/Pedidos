@@ -4,7 +4,7 @@ using Pedidos.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Pedidos.Domain.Entities.Order;
 
-namespace Pedidos.Infrastructure.Repositories;
+namespace Pedidos.Infrastructure.Data.Repositories;
 
 public class OrderRepository : IOrderRepository
 {

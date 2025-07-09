@@ -4,7 +4,7 @@ using Pedidos.Domain.Entities.Product;
 using Pedidos.Domain.Repositories;
 using Pedidos.Infrastructure.Data;
 
-namespace Pedidos.Infrastructure.Repositories;
+namespace Pedidos.Infrastructure.Data.Repositories;
 
 public class ProductRepository : IProductRepository
 {

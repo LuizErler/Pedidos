@@ -4,7 +4,7 @@ using Pedidos.Application.Commands.CriarPedido;
 using Pedidos.Application.Repositories;
 using Pedidos.Domain.Repositories;
 using Pedidos.Infrastructure.Data;
-using Pedidos.Infrastructure.Repositories;
+using Pedidos.Infrastructure.Data.Repositories;
 using Pedidos.Infrastructure.Seed;
 
 var builder = WebApplication.CreateBuilder(args);

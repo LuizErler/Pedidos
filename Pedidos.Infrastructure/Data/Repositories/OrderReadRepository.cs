@@ -3,7 +3,7 @@ using MongoDB.Driver;
 using Pedidos.Application.Queries.DTOs;
 using Pedidos.Application.Repositories;
 
-namespace Pedidos.Infrastructure.Repositories;
+namespace Pedidos.Infrastructure.Data.Repositories;
 
 public class OrderReadRepository : IOrderReadRepository
 {
