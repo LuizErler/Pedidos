@@ -2,6 +2,10 @@
 using MediatR;
 using Pedidos.Application.Commands.CriarPedido;
 using Pedidos.Application.Commands.RemoverPedido;
+using Pedidos.Application.Commands.AtualizarStatusPedido;
+using Pedidos.Domain.Enuns;
+using Pedidos.Application.Queries.ListarPedidos;
+using Pedidos.Application.Queries.ObterPedidoPorId;
 
 namespace Pedidos.API.Controllers;
 
@@ -20,22 +24,37 @@ public class PedidosController : ControllerBase
     public async Task<IActionResult> CriarPedido([FromBody] CriarPedidoCommand command)
     {
         var pedidoId = await _mediator.Send(command);
-        return CreatedAtAction(nameof(ObterPorId), new { id = pedidoId }, new { id = pedidoId });
+        return CreatedAtAction(nameof(ObterPedidoPorId), new { id = pedidoId }, new { id = pedidoId });
     }
-
-    // Placeholder para o GetById – vamos montar depois com MongoDB (Query Side)
-    [HttpGet("{id}")]
-    public IActionResult ObterPorId(Guid id)
-    {
-        return Ok($"Consulta de pedido {id} virá do MongoDB futuramente.");
-    }
-
     [HttpDelete("{id}")]
     public async Task<IActionResult> RemoverPedido(Guid id)
     {
         var command = new RemoverPedidoCommand(id);
         await _mediator.Send(command);
         return NoContent();
+    }
+
+    [HttpPut("{id}/status")]
+    public async Task<IActionResult> AtualizarStatus(Guid id, [FromBody] OrderStatus novoStatus)
+    {
+        var command = new AtualizarStatusPedidoCommand(id, novoStatus);
+        await _mediator.Send(command);
+        return NoContent();
+    }
+    [HttpGet]
+    public async Task<IActionResult> ListarPedidos()
+    {
+        var pedidos = await _mediator.Send(new ListarPedidosQuery());
+        return Ok(pedidos);
+    }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> ObterPedidoPorId(Guid id)
+    {
+        var pedido = await _mediator.Send(new ObterPedidoPorIdQuery(id));
+        if (pedido is null)
+            return NotFound();
+
+        return Ok(pedido);
     }
 
 }

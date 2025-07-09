@@ -34,6 +34,10 @@ namespace Pedidos.Domain.Entities.Order
         {
             Status = newStatus;
         }
+        public void AtualizarStatus(OrderStatus novoStatus)
+        {
+            Status = novoStatus;
+        }
     }
 
 

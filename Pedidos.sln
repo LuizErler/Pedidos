@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedidos.Domain", "Pedidos.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedidos.Infrastructure", "Pedidos.Infrastructure\Pedidos.Infrastructure.csproj", "{C5D8E18F-A4F2-4B25-9728-103782986E30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedidos.Core", "Pedidos.Core\Pedidos.Core.csproj", "{C342D2CC-64E3-43EC-9D38-4607A0B47326}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{C5D8E18F-A4F2-4B25-9728-103782986E30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5D8E18F-A4F2-4B25-9728-103782986E30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5D8E18F-A4F2-4B25-9728-103782986E30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C342D2CC-64E3-43EC-9D38-4607A0B47326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C342D2CC-64E3-43EC-9D38-4607A0B47326}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C342D2CC-64E3-43EC-9D38-4607A0B47326}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C342D2CC-64E3-43EC-9D38-4607A0B47326}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
