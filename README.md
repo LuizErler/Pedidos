@@ -4,7 +4,7 @@ API RESTful para gerenciamento de pedidos de uma loja online, construída com fo
 
 ---
 
-## 🧠 Arquitetura
+## Arquitetura
 
 - **Clean Architecture**
 - **CQRS (Command Query Responsibility Segregation)**
@@ -16,9 +16,9 @@ API RESTful para gerenciamento de pedidos de uma loja online, construída com fo
 
 ---
 
-## 🛠️ Requisitos
+## Requisitos
 
-### 💻 Tecnologias
+## Tecnologias
 
 | Tecnologia        | Versão mínima |
 |-------------------|---------------|
@@ -31,7 +31,7 @@ API RESTful para gerenciamento de pedidos de uma loja online, construída com fo
 
 ---
 
-## 🧱 Estrutura de Projetos
+## Estrutura de Projetos
 
 Pedidos.sln
 
