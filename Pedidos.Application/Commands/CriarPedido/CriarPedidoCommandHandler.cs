@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Pedidos.Application.Repositories;
 using Pedidos.Domain.Entities.Order;
 using Pedidos.Domain.Repositories;
 
@@ -10,18 +9,15 @@ public class CriarPedidoCommandHandler : IRequestHandler<CriarPedidoCommand, Gui
     private readonly IOrderRepository _orderRepository;
     private readonly ICustomerRepository _customerRepository;
     private readonly IProductRepository _productRepository;
-    private readonly IOrderReadRepository _orderReadRepository;
 
     public CriarPedidoCommandHandler(
     IOrderRepository orderRepository,
     ICustomerRepository customerRepository,
-    IProductRepository productRepository,
-    IOrderReadRepository orderReadRepository)
+    IProductRepository productRepository)
     {
         _orderRepository = orderRepository;
         _customerRepository = customerRepository;
         _productRepository = productRepository;
-        _orderReadRepository = orderReadRepository;
     }
 
     public async Task<Guid> Handle(CriarPedidoCommand request, CancellationToken cancellationToken)

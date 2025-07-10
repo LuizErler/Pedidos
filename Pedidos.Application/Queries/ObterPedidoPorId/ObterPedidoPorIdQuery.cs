@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Pedidos.Application.Queries.DTOs;
+using Pedidos.Application.ReadModels;
 
 namespace Pedidos.Application.Queries.ObterPedidoPorId;
 
