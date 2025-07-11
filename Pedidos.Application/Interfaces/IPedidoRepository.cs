@@ -7,7 +7,5 @@ namespace Pedidos.Domain.Repositories
         Task<List<PedidoReadModel>> ObterTodosAsync();
         Task<PedidoReadModel?> ObterPorIdAsync(Guid id);
         Task AdicionarAsync(PedidoReadModel pedido);
-        Task AtualizarAsync(PedidoReadModel pedido);
-        Task RemoverAsync(Guid id);
     }
 }

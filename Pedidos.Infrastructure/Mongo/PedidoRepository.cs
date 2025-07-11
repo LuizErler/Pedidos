@@ -11,7 +11,7 @@ namespace Pedidos.Infra.Mongo.Repositories
         public PedidoRepository(IMongoClient mongoClient, string databaseName)
         {
             var database = mongoClient.GetDatabase(databaseName);
-            _collection = database.GetCollection<PedidoReadModel>("pedidos");
+            _collection = database.GetCollection<PedidoReadModel>("Pedidos");
         }
 
         public async Task<List<PedidoReadModel>> ObterTodosAsync()
@@ -27,16 +27,6 @@ namespace Pedidos.Infra.Mongo.Repositories
         public async Task AdicionarAsync(PedidoReadModel pedido)
         {
             await _collection.InsertOneAsync(pedido);
-        }
-
-        public async Task AtualizarAsync(PedidoReadModel pedido)
-        {
-            await _collection.ReplaceOneAsync(p => p.Id == pedido.Id, pedido);
-        }
-
-        public async Task RemoverAsync(Guid id)
-        {
-            await _collection.DeleteOneAsync(p => p.Id == id);
         }
     }
 }
