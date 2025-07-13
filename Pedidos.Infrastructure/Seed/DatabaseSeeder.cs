@@ -9,7 +9,7 @@ public static class DatabaseSeeder
 {
     public static void Seed(PedidosDbContext context)
     {
-        context.Database.Migrate(); // aplica migrações se tiver
+        context.Database.Migrate(); 
 
         if (!context.Customers.Any())
         {

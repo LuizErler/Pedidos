@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Pedidos.Domain.Entities.Order;
 
 namespace Pedidos.Application.ReadModels
 {
@@ -24,7 +25,27 @@ namespace Pedidos.Application.ReadModels
         public string Status { get; set; } = string.Empty;
 
         [BsonElement("itens")]
-        public List<ItemPedidoReadModel> Itens { get; set; } = new List<ItemPedidoReadModel>();
+        public List<ItemPedidoReadModel> Itens { get; set; } = new();
+
+        public static PedidoReadModel FromDomain(Order pedido)
+        {
+            return new PedidoReadModel
+            {
+                Id = pedido.Id,
+                CustomerId = pedido.CustomerId,
+                OrderDate = pedido.OrderDate,
+                TotalAmount = pedido.TotalAmount,
+                Status = pedido.Status.ToString(),
+                Itens = pedido.Items.Select(item => new ItemPedidoReadModel
+                {
+                    ProductId = item.ProductId,
+                    ProductName = item.ProductName,
+                    UnitPrice = item.UnitPrice,
+                    Quantity = item.Quantity,
+                    TotalPrice = item.TotalPrice
+                }).ToList()
+            };
+        }
     }
 
     public class ItemPedidoReadModel

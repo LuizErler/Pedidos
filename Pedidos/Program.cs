@@ -67,6 +67,24 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.Use(async (context, next) =>
+{
+    try
+    {
+        await next();
+    }
+    catch (Pedidos.Application.Exceptions.NotFoundException ex)
+    {
+        context.Response.StatusCode = StatusCodes.Status404NotFound;
+        await context.Response.WriteAsJsonAsync(new { error = ex.Message });
+    }
+    catch (Exception ex)
+    {
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        await context.Response.WriteAsJsonAsync(new { error = "Ocorreu um erro interno no servidor." });
+    }
+});
+
 
 app.UseHttpsRedirection();
 app.UseAuthorization();

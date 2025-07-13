@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Pedidos.Application.Events;
+using Pedidos.Application.Exceptions;
 using Pedidos.Application.ReadModels;
 using Pedidos.Domain.Entities.Order;
 using Pedidos.Domain.Repositories;
@@ -29,14 +30,14 @@ public class CriarPedidoCommandHandler : IRequestHandler<CriarPedidoCommand, Gui
     public async Task<Guid> Handle(CriarPedidoCommand request, CancellationToken cancellationToken)
     {
         var customer = await _customerRepository.GetByIdAsync(request.CustomerId)
-                      ?? throw new Exception("Cliente não encontrado");
+                      ?? throw new NotFoundException("Cliente não encontrado");
 
         var order = new Order(customer.Id);
 
         foreach (var item in request.Itens)
         {
             var product = await _productRepository.GetByIdAsync(item.ProductId)
-                         ?? throw new Exception($"Produto {item.ProductId} não encontrado");
+                         ?? throw new NotFoundException($"Produto {item.ProductId} não encontrado");
 
             order.AddItem(product.Id, product.Name, item.Quantity, product.Price);
         }

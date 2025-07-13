@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using Pedidos.Application.Exceptions;
 using Pedidos.Application.ReadModels;
 using Pedidos.Domain.Repositories;
 
@@ -28,5 +29,24 @@ namespace Pedidos.Infra.Mongo.Repositories
         {
             await _collection.InsertOneAsync(pedido);
         }
+        public async Task AtualizarAsync(PedidoReadModel pedido)
+        {
+            var resultado = await _collection.ReplaceOneAsync(p => p.Id == pedido.Id, pedido);
+
+            if (resultado.MatchedCount == 0)
+            {
+                throw new NotFoundException($"Pedido com ID {pedido.Id} não encontrado para atualização.");
+            }
+        }
+        public async Task RemoverAsync(Guid id)
+        {
+            var resultado = await _collection.DeleteOneAsync(p => p.Id == id);
+
+            if (resultado.DeletedCount == 0)
+            {
+                throw new NotFoundException($"Pedido com ID {id} não encontrado para remoção.");
+            }
+        }
+
     }
 }
