@@ -11,10 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedidos.Domain", "Pedidos.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedidos.Infrastructure", "Pedidos.Infrastructure\Pedidos.Infrastructure.csproj", "{C5D8E18F-A4F2-4B25-9728-103782986E30}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{92BFD3FA-EF29-4A8C-87D1-35B98846781C}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{5FEE4E29-7C17-4347-A749-1FABD8EDA852}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,11 +36,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{5D53901A-B3D4-44B1-B07C-DA43ED4CC8F3} = {92BFD3FA-EF29-4A8C-87D1-35B98846781C}
-		{1AA8F69D-3DED-4F86-AE43-F5BD480CE265} = {92BFD3FA-EF29-4A8C-87D1-35B98846781C}
-		{4A8F1A47-6DA8-47CC-93D7-37A0D5474DF7} = {92BFD3FA-EF29-4A8C-87D1-35B98846781C}
-		{C5D8E18F-A4F2-4B25-9728-103782986E30} = {92BFD3FA-EF29-4A8C-87D1-35B98846781C}
 	EndGlobalSection
 EndGlobal
