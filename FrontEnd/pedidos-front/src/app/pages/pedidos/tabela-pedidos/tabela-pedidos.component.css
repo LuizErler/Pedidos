@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+thead {
+  background-color: #2d3748; /* azul escuro, pode ajustar */
+  color: white;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: 1px solid #4a5568;
+  text-align: left;
+}
+
+tbody tr:hover {
+  background-color: #4a5568;
+  cursor: pointer;
+}

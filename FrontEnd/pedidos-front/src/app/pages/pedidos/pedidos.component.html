@@ -1,0 +1,20 @@
+<div class="container">
+  <h1 class="titulo">Cadastro de Pedido</h1>
+
+  <form class="formulario">
+    <label>Cliente:</label>
+    <input type="text" [(ngModel)]="novoPedido.customerId" name="cliente" placeholder="ID do cliente" />
+
+    <div class="itens">
+      <label>Produto:</label>
+      <input type="text" [(ngModel)]="novoPedido.itens[0].productId" name="produto" placeholder="ID do produto" />
+
+      <label>Quantidade:</label>
+      <input type="number" [(ngModel)]="novoPedido.itens[0].quantity" name="quantidade" />
+    </div>
+
+    <button type="button" class="btn">Cadastrar</button>
+  </form>
+
+  <app-tabela-pedidos [pedidos]="pedidos"></app-tabela-pedidos>
+</div>

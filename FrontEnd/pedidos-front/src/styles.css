@@ -1,0 +1,19 @@
+/* styles.css */
+
+:root {
+  --bg-main: #0f0f0f;
+  --bg-panel: #1e1e1e;
+  --text-main: #f9f9f9;
+  --text-secondary: #b0b0b0;
+  --primary: #6C5DD3;
+  --accent: #00BA88;
+  --radius: 10px;
+  --padding: 16px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-main);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-main);
+}
