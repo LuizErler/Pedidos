@@ -45,7 +45,7 @@ export class TabelaPedidosComponent implements OnChanges {
   }
 
   onStatusChange(id: string, status: number) {
-    this.statusMap[id] = status;  // Atualiza localmente
+    this.statusMap[id] = status;  
     this.atualizarStatus.emit({ id, status });
   }
 }

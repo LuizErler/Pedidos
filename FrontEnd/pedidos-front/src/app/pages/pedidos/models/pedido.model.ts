@@ -10,7 +10,7 @@ export interface Pedido {
   id: string;
   customerId: string;
   customerName: string;
-  orderDate: string; // ISO string, pode ser Date também se quiser
+  orderDate: string; 
   totalAmount: number;
   status: string;
   itens: ItemPedido[];
