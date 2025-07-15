@@ -1,0 +1,30 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Cliente</th>
+      <th>Data</th>
+      <th>Total</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pedido of pedidos">
+      <td>{{ pedido.id }}</td>
+      <td>{{ pedido.customerName }}</td>
+      <td>{{ pedido.orderDate | date:'shortDate' }}</td>
+      <td>{{ pedido.totalAmount | currency:'BRL' }}</td>
+      <td>
+        <select [(ngModel)]="statusMap[pedido.id]" (ngModelChange)="onStatusChange(pedido.id, $event)">
+          <option *ngFor="let opt of statusOptions" [value]="opt.value">
+            {{ opt.label }}
+          </option>
+        </select>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="removerPedido(pedido.id)">Remover</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
