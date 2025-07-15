@@ -56,7 +56,7 @@ mensagemSucessoModal = true;
       this.mensagemModal = 'Pedido criado com sucesso! ID: ' + res.id;
       this.mensagemSucessoModal = true;
       this.modalAberto = true;
-      this.cdr.detectChanges(); // <-- força atualização da view
+      this.cdr.detectChanges(); 
 
       this.novoPedido = {
         customerId: '',
@@ -69,7 +69,7 @@ mensagemSucessoModal = true;
       this.mensagemModal = 'Erro ao criar pedido. Tente novamente.';
       this.mensagemSucessoModal = false;
       this.modalAberto = true;
-      this.cdr.detectChanges(); // <-- força também no erro
+      this.cdr.detectChanges(); 
       console.error('Erro ao criar pedido:', err);
     }
   });
@@ -97,7 +97,7 @@ removerPedido(id: string) {
       this.modalAberto = true;
 
       this.carregarPedidos();
-      this.cdr.detectChanges(); // Atualiza a view pra garantir que o modal apareça
+      this.cdr.detectChanges(); 
     },
     error: (erro) => {
       console.error('Erro ao remover pedido:', erro);
