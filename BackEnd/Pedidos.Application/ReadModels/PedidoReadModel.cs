@@ -33,6 +33,7 @@ namespace Pedidos.Application.ReadModels
             {
                 Id = pedido.Id,
                 CustomerId = pedido.CustomerId,
+                CustomerName = "Cliente Padrão",
                 OrderDate = pedido.OrderDate,
                 TotalAmount = pedido.TotalAmount,
                 Status = pedido.Status.ToString(),
