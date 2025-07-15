@@ -3,7 +3,7 @@ import { provideRouter, Routes } from '@angular/router';
 
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { PedidosComponent } from './pages/pedidos/pedidos.component';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 const routes: Routes = [
   { path: '', component: PedidosComponent }
@@ -14,6 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes), provideClientHydration(withEventReplay()),
-    provideHttpClient()
+    provideHttpClient(withFetch())
   ]
 };

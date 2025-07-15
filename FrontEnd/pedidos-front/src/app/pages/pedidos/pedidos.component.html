@@ -1,20 +1,80 @@
 <div class="container">
   <h1 class="titulo">Cadastro de Pedido</h1>
 
-  <form class="formulario">
-    <label>Cliente:</label>
-    <input type="text" [(ngModel)]="novoPedido.customerId" name="cliente" placeholder="ID do cliente" />
-
-    <div class="itens">
-      <label>Produto:</label>
-      <input type="text" [(ngModel)]="novoPedido.itens[0].productId" name="produto" placeholder="ID do produto" />
-
-      <label>Quantidade:</label>
-      <input type="number" [(ngModel)]="novoPedido.itens[0].quantity" name="quantidade" />
+  <form class="formulario" (ngSubmit)="criarPedido()">
+    
+    <!-- Área do Cliente -->
+    <div class="form-bloco">
+     <label for="cliente">Cliente:</label>
+<input
+  type="text"
+  id="cliente-input"
+  [(ngModel)]="novoPedido.customerId"
+  name="cliente"
+  placeholder="ID do cliente" />
     </div>
 
-    <button type="button" class="btn">Cadastrar</button>
+    <!-- Área dos Itens -->
+    <div class="form-bloco itens-container">
+      <h3 class="subtitulo">Itens do Pedido</h3>
+
+      <div
+        class="item-linha"
+        *ngFor="let item of novoPedido.itens; let i = index"
+      >
+        <div class="item-campo">
+          <label for="produto-{{ i }}">Produto:</label>
+          <input
+            id="produto-{{ i }}"
+            type="text"
+            [(ngModel)]="item.productId"
+            name="produto{{ i }}"
+            placeholder="ID do produto"
+          />
+        </div>
+
+        <div class="item-campo">
+          <label for="quantidade-{{ i }}">Quantidade:</label>
+          <input
+            id="quantidade-{{ i }}"
+            type="number"
+            [(ngModel)]="item.quantity"
+            name="quantidade{{ i }}"
+            min="1"
+          />
+        </div>
+
+        <button
+          type="button"
+          (click)="removerItem(i)"
+          *ngIf="novoPedido.itens.length > 1"
+          class="btn-remover"
+        >
+          Remover
+        </button>
+      </div>
+
+      <button type="button" (click)="adicionarItem()" class="btn-adicionar">
+        + Adicionar Produto
+      </button>
+    </div>
+
+    <button type="submit" class="btn">Cadastrar</button>
   </form>
 
-  <app-tabela-pedidos [pedidos]="pedidos"></app-tabela-pedidos>
+
+
+
+  <app-tabela-pedidos
+  [pedidos]="pedidos"
+  (excluir)="removerPedido($event)"
+  (atualizarStatus)="atualizarStatusPedido($event)">
+</app-tabela-pedidos>
+
+    <div *ngIf="modalAberto" class="modal-overlay">
+  <div class="modal-content" [ngClass]="{'modal-sucesso': mensagemSucessoModal, 'modal-erro': !mensagemSucessoModal}">
+    <p>{{ mensagemModal }}</p>
+    <button (click)="fecharModal()">OK</button>
+  </div>
+</div>
 </div>

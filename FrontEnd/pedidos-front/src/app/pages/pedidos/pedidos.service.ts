@@ -8,7 +8,7 @@ import { Pedido } from './models/pedido.model';
 })
 export class PedidoService {
 
-  private apiUrl = 'https://localhost:7210/api/pedidos'; // Ajuste a URL se for outra
+  private apiUrl = 'http://localhost:5265/api/pedidos'; // Ajuste a URL se for outra
 
   constructor(private http: HttpClient) { }
 
@@ -24,9 +24,17 @@ export class PedidoService {
     return this.http.post<{ id: string }>(this.apiUrl, pedido);
   }
 
-  atualizarStatus(id: string, status: string): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${id}/status`, status);
-  }
+atualizarStatus(id: string, status: number): Observable<void> {
+  return this.http.put<void>(
+    `${this.apiUrl}/${id}/status`,
+    status, // NÃO usar JSON.stringify aqui!
+    {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+}
 
   remover(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);

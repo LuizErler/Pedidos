@@ -1,21 +1,50 @@
+:root {
+  --padding: 24px;
+  --radius: 8px;
+  --primary: #6c5ce7;
+  --bg-panel: #1a1a1a;
+  --text-main: #ffffff;
+  --text-secondary: #cccccc;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #121212;
+  font-family: Arial, sans-serif;
+}
+
 .container {
-  max-width: 600px;
+  max-width: 1000px;
   margin: 40px auto;
   background-color: var(--bg-panel);
-  padding: var(--padding);
+  padding: 32px;
   border-radius: var(--radius);
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.6);
+  border: 1px solid #2b2b2b;
 }
 
 .titulo {
-  font-size: 24px;
+  font-size: 28px;
   color: var(--primary);
-  margin-bottom: 24px;
+  margin-bottom: 32px;
+  text-align: center;
 }
 
+/* Blocos separados visualmente */
+.form-bloco {
+  padding: 10px;
+  background-color: #1f1f1f;
+  border-radius: var(--radius);
+  margin-bottom: 32px;
+  border: 1px solid #2c2c2c;
+}
+
+/* Labels e inputs com respiro */
 .formulario label {
   display: block;
   margin-top: 16px;
+  margin-bottom: 6px;
   font-weight: bold;
   color: var(--text-secondary);
 }
@@ -23,15 +52,18 @@
 .formulario input {
   width: 100%;
   padding: 10px;
-  margin-top: 4px;
   border-radius: var(--radius);
   border: none;
   background-color: #2a2a2a;
   color: var(--text-main);
+  margin-bottom: 12px;
 }
 
-.btn {
-  margin-top: 24px;
+/* Botões */
+.btn,
+.btn-adicionar,
+.btn-remover {
+  display: block;
   width: 100%;
   background-color: var(--primary);
   color: white;
@@ -41,8 +73,129 @@
   font-size: 16px;
   cursor: pointer;
   transition: 0.2s;
+  margin-top: 24px;
 }
 
 .btn:hover {
   background-color: #594ac3;
+}
+
+.btn-adicionar {
+  background-color: #3333aa;
+  margin-top: 12px;
+}
+
+.btn-adicionar:hover {
+  background-color: #2a2899;
+}
+
+.btn-remover {
+  background-color: #aa3333;
+  width: auto;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.btn-remover:hover {
+  background-color: #992222;
+}
+
+/* Itens */
+.itens-container .item-linha {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  margin-right: 20px;
+}
+
+.item-campo {
+  flex: 1;
+  min-width: 160px;
+  width: 100%;
+}
+
+.subtitulo {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+.formulario > label[for="cliente"] {
+  margin-top: 0;
+}
+
+#cliente-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: none;
+  background-color: #2a2a2a;
+  color: var(--text-main);
+  box-sizing: border-box;
+}
+
+.mensagem {
+  margin-top: 16px;
+  padding: 10px;
+  border-radius: var(--radius);
+  font-weight: bold;
+}
+
+.msg-sucesso {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.msg-erro {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #222;
+  padding: 20px 30px;
+  border-radius: 8px;
+  color: white;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 12px #000;
+}
+
+.modal-sucesso {
+  border: 2px solid #4CAF50; /* verde */
+}
+
+.modal-erro {
+  border: 2px solid #F44336; /* vermelho */
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 8px 20px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modal-erro button {
+  background: #F44336;
 }

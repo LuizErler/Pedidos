@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PedidoService } from './pedidos.service';
@@ -13,6 +13,9 @@ import { TabelaPedidosComponent } from './tabela-pedidos/tabela-pedidos.componen
   styleUrls: ['./pedidos.component.css']
 })
 export class PedidosComponent  implements OnInit  {
+modalAberto = false;
+mensagemModal = '';
+mensagemSucessoModal = true;
  ngOnInit(): void {
     this.carregarPedidos();
   }
@@ -26,7 +29,7 @@ export class PedidosComponent  implements OnInit  {
     
   };
   pedidos: Pedido[] = [];
-  constructor(private pedidoService: PedidoService) {}
+  constructor(private pedidoService: PedidoService, private cdr: ChangeDetectorRef) {}
 
    adicionarItem() {
     this.novoPedido.itens.push({ productId: '', quantity: 1 });
@@ -37,9 +40,44 @@ export class PedidosComponent  implements OnInit  {
   }
 
   criarPedido() {
-    console.log('Pedido enviado:', this.novoPedido);
-    // Aqui depois você chama o serviço que envia o pedido pra API
-  }
+  const pedidoParaEnviar: Partial<Pedido> = {
+    customerId: this.novoPedido.customerId,
+    itens: this.novoPedido.itens.map(item => ({
+      productId: item.productId,
+      quantity: item.quantity,
+      productName: '',
+      unitPrice: 0,
+      totalPrice: 0
+    }))
+  };
+
+  this.pedidoService.criar(pedidoParaEnviar).subscribe({
+    next: (res) => {
+      this.mensagemModal = 'Pedido criado com sucesso! ID: ' + res.id;
+      this.mensagemSucessoModal = true;
+      this.modalAberto = true;
+      this.cdr.detectChanges(); // <-- força atualização da view
+
+      this.novoPedido = {
+        customerId: '',
+        itens: [{ productId: '', quantity: 1 }]
+      };
+
+      this.carregarPedidos();
+    },
+    error: (err) => {
+      this.mensagemModal = 'Erro ao criar pedido. Tente novamente.';
+      this.mensagemSucessoModal = false;
+      this.modalAberto = true;
+      this.cdr.detectChanges(); // <-- força também no erro
+      console.error('Erro ao criar pedido:', err);
+    }
+  });
+}
+
+fecharModal() {
+  this.modalAberto = false;
+}
 
    carregarPedidos() {
   this.pedidoService.listar().subscribe({
@@ -51,5 +89,29 @@ export class PedidosComponent  implements OnInit  {
     }
   });
 }
+removerPedido(id: string) {
+  this.pedidoService.remover(id).subscribe({
+    next: () =>{
+      this.carregarPedidos();
+     },
+    error: (erro) => {
+      console.error('Erro ao remover pedido:', erro);
+      alert('Erro ao remover pedido.');
+    }
+  });
+}
+
+atualizarStatusPedido(payload: { id: string, status: number }) {
+  this.pedidoService.atualizarStatus(payload.id, payload.status).subscribe({
+    next: () => {
+      this.carregarPedidos(); // recarrega a lista
+    },
+    error: (erro) => {
+      console.error('Erro ao atualizar status:', erro);
+      alert('Erro ao atualizar status do pedido.');
+    }
+  });
+}
+
 }
 
