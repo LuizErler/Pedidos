@@ -91,12 +91,20 @@ fecharModal() {
 }
 removerPedido(id: string) {
   this.pedidoService.remover(id).subscribe({
-    next: () =>{
+    next: () => {
+      this.mensagemModal = 'Pedido removido com sucesso!';
+      this.mensagemSucessoModal = true;
+      this.modalAberto = true;
+
       this.carregarPedidos();
-     },
+      this.cdr.detectChanges(); // Atualiza a view pra garantir que o modal apareça
+    },
     error: (erro) => {
       console.error('Erro ao remover pedido:', erro);
-      alert('Erro ao remover pedido.');
+      this.mensagemModal = 'Erro ao remover o pedido. Tente novamente.';
+      this.mensagemSucessoModal = false;
+      this.modalAberto = true;
+      this.cdr.detectChanges();
     }
   });
 }
@@ -104,14 +112,23 @@ removerPedido(id: string) {
 atualizarStatusPedido(payload: { id: string, status: number }) {
   this.pedidoService.atualizarStatus(payload.id, payload.status).subscribe({
     next: () => {
-      this.carregarPedidos(); // recarrega a lista
+      this.mensagemModal = 'Status do pedido atualizado com sucesso!';
+      this.mensagemSucessoModal = true;
+      this.modalAberto = true;
+
+      this.carregarPedidos();
+      this.cdr.detectChanges();
     },
     error: (erro) => {
       console.error('Erro ao atualizar status:', erro);
-      alert('Erro ao atualizar status do pedido.');
+      this.mensagemModal = 'Erro ao atualizar o status. Tente novamente.';
+      this.mensagemSucessoModal = false;
+      this.modalAberto = true;
+      this.cdr.detectChanges();
     }
   });
 }
+
 
 }
 
